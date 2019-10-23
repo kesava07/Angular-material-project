@@ -1,23 +1,29 @@
-<mat-toolbar color="primary" class="my-navbar mat-elevation-z10">
-  <div>
-      <span class="ml-1">
-      <button mat-button>
-         <mat-icon class="mb-1">home</mat-icon>  Help-U
+<div class="col-12 p-0">
+  <mat-toolbar color="primary" class="my-navbar mat-elevation-z10">
+    <div>
+      <span class="ml-1 ml-sm-0">
+        <a mat-button routerLink="/">
+          <mat-icon class="mb-1">home</mat-icon> Help-U
+        </a>
+      </span>
+      <span class="ml-1 ml-sm-0">
+        <a mat-button routerLink="/">Home</a>
+        <a mat-button routerLink="/about">About</a>
+        <a mat-button routerLink="/contact">Contact</a>
+      </span>
+    </div>
+    <div class="d-none d-sm-block">
+      <a mat-button routerLink="/sign-in">Sign In</a>
+      <a mat-button routerLink="/sign-up">Sign Up</a>
+    </div>
+    <div class="d-block d-sm-none">
+      <mat-menu #authMenu="matMenu">
+        <a mat-menu-item routerLink="/sign-in">Sign In</a>
+        <a mat-menu-item routerLink="/sign-up">Sign Up</a>
+      </mat-menu>
+      <button mat-icon-button [matMenuTriggerFor]="authMenu">
+        <mat-icon>more_vert</mat-icon>
       </button>
-    </span>
-    <span class="ml-1">
-    <button mat-button>Home</button>
-    <button mat-button>About</button>
-    <button mat-button>Contact</button>
-  </span>
-  </div>
-  <div>
-    <mat-menu #authMenu="matMenu">
-      <button mat-menu-item>Sign In</button>
-      <button mat-menu-item>Sign In</button>
-    </mat-menu>
-    <button mat-icon-button [matMenuTriggerFor]="authMenu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
-  </div>
-</mat-toolbar>
+    </div>
+  </mat-toolbar>
+</div>
