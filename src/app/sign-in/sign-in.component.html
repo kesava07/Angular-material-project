@@ -1,21 +1,24 @@
 <div class="help-u-sign-in">
-    <div class="col-lg-4 mx-auto mt-5">
-        <mat-progress-bar *ngIf="isVisible" mode="indeterminate"></mat-progress-bar>
-        <mat-card class="mat-elevation-z6">
-            <mat-card-title>Sign-In</mat-card-title>
-            <form class="sign-in-form">
-                <mat-form-field appearance="outline" class="form-full-width">
-                    <mat-label>Email</mat-label>
-                    <input type="email" matInput required>
-                    <mat-icon matSuffix>mail</mat-icon>
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="form-full-width">
-                    <mat-label>Password</mat-label>
-                    <input type="password" matInput required>
-                    <mat-icon matSuffix>lock</mat-icon>
-                </mat-form-field>
-                <button mat-raised-button color="primary">Sign in</button>
-            </form>
-        </mat-card>
-    </div>
+  <div class="col-lg-4 mx-auto mt-5">
+    <mat-progress-bar *ngIf="isVisible" mode="indeterminate"></mat-progress-bar>
+    <mat-card class="mat-elevation-z6">
+      <mat-card-title>Sign-In</mat-card-title>
+      <form class="sign-in-form" [formGroup]="userLoginForm" (ngSubmit)="handleLoginUser()">
+        <mat-form-field appearance="outline" class="form-full-width">
+          <mat-label>Email</mat-label>
+          <input formControlName="userEmail" type="email" matInput name="userEmail">
+          <mat-icon matSuffix color="primary">mail</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-full-width">
+          <mat-label>Password</mat-label>
+          <input formControlName="userPassword" type="password" matInput name="userPassword">
+          <mat-icon matSuffix color="primary">lock</mat-icon>
+        </mat-form-field>
+        <div class="text-center">
+          <button [disabled]="userLoginForm.invalid || isVisible" mat-raised-button color="primary">Sign in</button>
+        </div>
+      </form>
+      <p class="text-center text-danger my-2">{{authError?.message}}</p>
+    </mat-card>
+  </div>
 </div>

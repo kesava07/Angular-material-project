@@ -1,1 +1,29 @@
-<p>sign-up works!</p>
+<div class="help-u-sign-up">
+  <div class="col-lg-4 mx-auto mt-5">
+    <mat-progress-bar *ngIf="isVisible" mode="indeterminate"></mat-progress-bar>
+    <mat-card class="mat-elevation-z6">
+      <mat-card-title>Sign-Up</mat-card-title>
+      <form class="sign-up-form" [formGroup]="userSignUp" (ngSubmit)="handleSignUp()">
+        <mat-form-field appearance="outline" class="form-full-width">
+          <mat-label>User Name</mat-label>
+          <input formControlName="userName" type="text" matInput required>
+          <mat-icon matSuffix color="primary">account_circle</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-full-width">
+          <mat-label>Email</mat-label>
+          <input formControlName="userEmail" type="email" matInput required>
+          <mat-icon matSuffix color="primary">mail</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-full-width">
+          <mat-label>Password</mat-label>
+          <input formControlName="userPassword" type="password" matInput required>
+          <mat-icon matSuffix color="primary">lock</mat-icon>
+        </mat-form-field>
+        <div class="text-center">
+          <button [disabled]="userSignUp.invalid || isVisible" mat-raised-button color="primary">Sign up</button>
+        </div>
+      </form>
+      <p class="text-center text-danger my-2">{{authError?.message}}</p>
+    </mat-card>
+  </div>
+</div>

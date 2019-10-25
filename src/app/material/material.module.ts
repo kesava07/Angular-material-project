@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {
   MatButtonModule,
   MatToolbarModule,
@@ -8,7 +8,10 @@ import {
   MatInputModule,
   MatSelectModule,
   MatCardModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatExpansionModule,
+  MatSidenavModule,
+  MatListModule
 } from '@angular/material';
 
 const Material = [
@@ -20,7 +23,10 @@ const Material = [
   MatInputModule,
   MatSelectModule,
   MatCardModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatExpansionModule,
+  MatSidenavModule,
+  MatListModule
 ];
 
 @NgModule({

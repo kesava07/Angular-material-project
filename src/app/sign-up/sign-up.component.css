@@ -1,0 +1,21 @@
+.help-u-sign-up .sign-up-form {
+  width: 100%
+}
+
+.help-u-sign-up .form-full-width {
+  width: 100%;
+}
+
+.help-u-sign-up mat-card-title {
+  margin-bottom: 30px;
+  text-align: center;
+  color: #3f51b5;
+}
+
+.help-u-sign-up .text-center {
+  text-align: center;
+}
+
+.help-u-sign-up .text-danger {
+  color: #f44336;
+}

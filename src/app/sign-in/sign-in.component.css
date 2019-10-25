@@ -1,12 +1,17 @@
-.help-u-sign-in .sign-in-form{
-width: 100%
+.help-u-sign-in .sign-in-form {
+  width: 100%
 }
-.help-u-sign-in .form-full-width{
-    width: 100%;
-    margin-bottom: 10px;
+
+.help-u-sign-in .form-full-width {
+  width: 100%;
 }
-.help-u-sign-in mat-card-title{
-    margin-bottom: 30px;
-    text-align: center;
-    color: #3f51b5;
+
+.help-u-sign-in mat-card-title {
+  margin-bottom: 30px;
+  text-align: center;
+  color: #3f51b5;
+}
+
+.help-u-sign-in .text-center {
+  text-align: center;
 }

@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyBHk_oyo0VtOWDPcPWlqdNJPtk4YxLG4GA',
+    authDomain: 'kesava-profile.firebaseapp.com',
+    databaseURL: 'https://kesava-profile.firebaseio.com',
+    projectId: 'kesava-profile',
+    storageBucket: 'kesava-profile.appspot.com',
+    messagingSenderId: '119642941386',
+    appId: '1:119642941386:web:1ce9d6257922b09b'
+  }
 };
 
 /*

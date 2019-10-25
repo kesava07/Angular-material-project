@@ -13,13 +13,23 @@
       </span>
     </div>
     <div class="d-none d-sm-block">
-      <a mat-button routerLink="/sign-in">Sign In</a>
+      <span *ngIf="!user">
+        <a mat-button routerLink="/sign-in">Sign In</a>
       <a mat-button routerLink="/sign-up">Sign Up</a>
+      </span>
+      <span *ngIf="user">
+        <button mat-button (click)="userLogout()">Logout</button>
+      </span>
     </div>
     <div class="d-block d-sm-none">
       <mat-menu #authMenu="matMenu">
-        <a mat-menu-item routerLink="/sign-in">Sign In</a>
+      <span *ngIf="!user">
+          <a mat-menu-item routerLink="/sign-in">Sign In</a>
         <a mat-menu-item routerLink="/sign-up">Sign Up</a>
+      </span>
+        <span *ngIf="user">
+           <button mat-button (click)="userLogout()">Logout</button>
+        </span>
       </mat-menu>
       <button mat-icon-button [matMenuTriggerFor]="authMenu">
         <mat-icon>more_vert</mat-icon>
