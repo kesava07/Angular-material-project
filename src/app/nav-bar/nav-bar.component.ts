@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, DoCheck, OnInit} from '@angular/core';
 import {AuthService} from '../auth/auth.service';
 
 @Component({
@@ -6,17 +6,18 @@ import {AuthService} from '../auth/auth.service';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
-export class NavBarComponent implements OnInit {
+export class NavBarComponent implements OnInit, DoCheck {
   user: any;
 
   constructor(private authSer: AuthService) {
   }
 
   ngOnInit() {
-    this.authSer.getUserStatus()
-      .subscribe(user => {
-        this.user = user;
-      });
+    this.user = this.authSer.getUser();
+  }
+
+  ngDoCheck() {
+    this.user = this.authSer.getUser();
   }
 
   userLogout() {

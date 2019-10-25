@@ -51,6 +51,7 @@ export class AuthService {
     this.isEnabled.next(true);
     this.afAuth.auth.signInWithEmailAndPassword(user.userEmail, user.userPassword)
       .then(createdUser => {
+        this.setUser(createdUser);
         this.isEnabled.next(false);
         this.router.navigate(['/dashboard']);
       }).catch(err => {
@@ -59,14 +60,31 @@ export class AuthService {
     });
   }
 
-
-  getUserStatus() {
-    return this.afAuth.authState;
+  setUser(user) {
+    localStorage.setItem('userData', JSON.stringify(user));
   }
+
+  removeUser() {
+    localStorage.removeItem('userData');
+  }
+
+  getUser() {
+    return !!localStorage.getItem('userData');
+  }
+
+  resetError() {
+    this.eventAuthError.next(undefined);
+  }
+
+  //
+  // getUserStatus() {
+  //   return this.afAuth.authState;
+  // }
 
   userLogout() {
     this.afAuth.auth.signOut()
       .then(() => {
+        this.removeUser();
         this.router.navigate(['/sign-in']);
       });
   }

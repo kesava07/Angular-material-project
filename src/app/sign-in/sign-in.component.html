@@ -11,14 +11,14 @@
         </mat-form-field>
         <mat-form-field appearance="outline" class="form-full-width">
           <mat-label>Password</mat-label>
-          <input formControlName="userPassword" type="password" matInput name="userPassword">
+          <input autocomplete="" formControlName="userPassword" type="password" matInput name="userPassword">
           <mat-icon matSuffix color="primary">lock</mat-icon>
         </mat-form-field>
         <div class="text-center">
           <button [disabled]="userLoginForm.invalid || isVisible" mat-raised-button color="primary">Sign in</button>
         </div>
       </form>
-      <p class="text-center text-danger my-2">{{authError?.message}}</p>
+      <p class="text-center text-danger my-3 mat-caption">{{authError?.message}}</p>
     </mat-card>
   </div>
 </div>

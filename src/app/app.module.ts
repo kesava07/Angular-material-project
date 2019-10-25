@@ -10,6 +10,7 @@ import {MaterialModule} from './material/material.module';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 import {NavBarComponent} from './nav-bar/nav-bar.component';
 import {HomeComponent} from './home/home.component';
@@ -21,6 +22,7 @@ import {SignUpComponent} from './sign-up/sign-up.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 
 import {AuthService} from './auth/auth.service';
+import {AuthGuard} from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -42,9 +44,10 @@ import {AuthService} from './auth/auth.service';
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    FlexLayoutModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

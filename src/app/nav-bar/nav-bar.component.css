@@ -1,8 +1,23 @@
 .my-navbar {
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   justify-content: space-between;
 }
 
 .my-navbar.mat-toolbar-single-row {
   height: 55px;
+}
+
+.my-custom-side-bar mat-sidenav-content {
+  height: 100vh;
+}
+
+.my-custom-side-bar mat-sidenav-container {
+  height: 92vh;
+}
+
+.my-custom-side-bar mat-sidenav {
+  width: 230px;
+  background-color: whitesmoke;
 }

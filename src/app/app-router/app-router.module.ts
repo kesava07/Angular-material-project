@@ -6,6 +6,7 @@ import {ContactComponent} from '../contact/contact.component';
 import {SignInComponent} from '../sign-in/sign-in.component';
 import {SignUpComponent} from '../sign-up/sign-up.component';
 import {DashboardComponent} from '../dashboard/dashboard.component';
+import {AuthGuard} from '../guards/auth.guard';
 
 const Routes = [
   {path: '', component: HomeComponent},
@@ -13,7 +14,7 @@ const Routes = [
   {path: 'contact', component: ContactComponent},
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
-  {path: 'dashboard', component: DashboardComponent},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: '**', redirectTo: ''}
 ];
 

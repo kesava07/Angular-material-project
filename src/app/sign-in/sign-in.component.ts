@@ -1,20 +1,21 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from '../auth/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css']
 })
-export class SignInComponent implements OnInit {
+export class SignInComponent implements OnInit, OnDestroy {
   isVisible = false;
 
   authError: any;
 
   userLoginForm;
 
-  constructor(private fb: FormBuilder, private authSer: AuthService) {
+  constructor(private fb: FormBuilder, private authSer: AuthService, private router: Router) {
     this.userLoginForm = this.fb.group({
       userEmail: ['', [Validators.required, Validators.email]],
       userPassword: ['', [Validators.required, Validators.minLength(6)]]
@@ -28,6 +29,9 @@ export class SignInComponent implements OnInit {
     this.authSer.isEnabled$.subscribe(type => {
       this.isVisible = type;
     });
+    if (this.authSer.getUser()) {
+      this.router.navigate(['/dashboard']);
+    }
   }
 
   handleLoginUser() {
@@ -38,12 +42,8 @@ export class SignInComponent implements OnInit {
     }
   }
 
-  get userEmail() {
-    return this.userLoginForm.get(('userEmail'));
-  }
-
-  get userPassword() {
-    return this.userLoginForm.get(('userPassword'));
+  ngOnDestroy() {
+    this.authSer.resetError();
   }
 
 }

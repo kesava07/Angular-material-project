@@ -15,3 +15,7 @@
 .help-u-sign-in .text-center {
   text-align: center;
 }
+
+.help-u-sign-in .text-danger {
+  color: #f44336;
+}
