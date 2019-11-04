@@ -4,6 +4,7 @@ import {AngularFireDatabase} from '@angular/fire/database';
 import {Router} from '@angular/router';
 import {FirebaseAuth} from '@angular/fire';
 import {BehaviorSubject} from 'rxjs';
+import {MatSnackBar} from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class AuthService {
 
   newUser;
 
-  constructor(private afAuth: AngularFireAuth, private afDb: AngularFireDatabase, private router: Router) {
+  constructor(private afAuth: AngularFireAuth, private afDb: AngularFireDatabase, private router: Router, private snackBar: MatSnackBar) {
   }
 
   createUser(user) {
@@ -28,11 +29,14 @@ export class AuthService {
         this.newUser = user;
         createdUser.user.updateProfile({
           displayName: user.userName
-        }).then(() => this.saveUserToDb(createdUser).then(() => {
-          console.log('user created successfully');
-          this.isEnabled.next(false);
-          this.router.navigate(['/sign-in']);
-        }));
+        }).then(() => {
+          this.afAuth.auth.currentUser.sendEmailVerification()
+            .then(() => this.saveUserToDb(createdUser).then(() => {
+              this.snackBar.open('Activation link has been sent to your mail please verify', 'Dismiss', {duration: 2000});
+              this.isEnabled.next(false);
+              this.router.navigate(['/sign-in']);
+            }));
+        });
       }).catch(err => {
       console.log(err);
       this.isEnabled.next(false);
@@ -51,9 +55,14 @@ export class AuthService {
     this.isEnabled.next(true);
     this.afAuth.auth.signInWithEmailAndPassword(user.userEmail, user.userPassword)
       .then(createdUser => {
-        this.setUser(createdUser);
-        this.isEnabled.next(false);
-        this.router.navigate(['/dashboard']);
+        if (createdUser.user.emailVerified) {
+          this.setUser(createdUser);
+          this.isEnabled.next(false);
+          this.router.navigate(['/dashboard']);
+        } else {
+          this.snackBar.open('Please verify your email', 'Dismiss', {duration: 2000});
+          this.isEnabled.next(false);
+        }
       }).catch(err => {
       this.eventAuthError.next(err);
       this.isEnabled.next(false);
