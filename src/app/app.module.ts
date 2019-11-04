@@ -23,6 +23,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 
 import {AuthService} from './auth/auth.service';
 import {AuthGuard} from './guards/auth.guard';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {AuthGuard} from './guards/auth.guard';
     ContactComponent,
     SignInComponent,
     SignUpComponent,
-    DashboardComponent
+    DashboardComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

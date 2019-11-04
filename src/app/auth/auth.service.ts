@@ -98,4 +98,19 @@ export class AuthService {
       });
   }
 
+  userForgotPassword(email) {
+    this.isEnabled.next(true);
+    this.afAuth.auth.sendPasswordResetEmail(email)
+      .then(() => {
+        this.isEnabled.next(false);
+        this.snackBar.open('An email has been sent to reset your password', 'Dismiss', {duration: 2000});
+        setTimeout(() => {
+          this.router.navigate(['/sign-in']);
+        }, 1500);
+      }).catch(err => {
+      this.eventAuthError.next(err);
+      this.isEnabled.next(false);
+    });
+  }
+
 }

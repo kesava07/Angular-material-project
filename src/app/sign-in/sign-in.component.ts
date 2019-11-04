@@ -35,6 +35,7 @@ export class SignInComponent implements OnInit, OnDestroy {
   }
 
   handleLoginUser() {
+    this.authSer.resetError();
     if (this.userLoginForm.valid) {
       this.authSer.signInUser(this.userLoginForm.value);
     } else {

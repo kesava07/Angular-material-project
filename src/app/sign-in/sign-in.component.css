@@ -19,3 +19,7 @@
 .help-u-sign-in .text-danger {
   color: #f44336;
 }
+.help-u-sign-in .forgot-password{
+  color: #3f51b5;
+  cursor: pointer;
+}

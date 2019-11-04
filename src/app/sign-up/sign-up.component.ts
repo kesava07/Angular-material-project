@@ -35,6 +35,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
   }
 
   handleSignUp() {
+    this.authSer.resetError();
     if (this.userSignUp.valid) {
       this.authSer.createUser(this.userSignUp.value);
     } else {
